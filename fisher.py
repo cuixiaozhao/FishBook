@@ -6,6 +6,7 @@
 # File    : fisher.py
 # Author  : 天晴天朗
 # Email   : tqtl@tqtl.org
+
 from flask import Flask
 
 app = Flask(__name__)

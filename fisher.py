@@ -7,7 +7,7 @@
 # Author  : 天晴天朗
 # Email   : tqtl@tqtl.org
 
-from flask import Flask
+from flask import Flask, make_response
 
 # from config import DEBUG
 
@@ -20,6 +20,20 @@ print(app.config['DEBUG'])
 def hello():
     # 1/0
     # 基于类的视图(即插视图)
+    # 返回status code 200，401，404
+    # 返回content-typ额 http headers ,告诉浏览器如何解析这段字符串！默认值content-type = text/html
+    # 返回Response对象；
+    headers = {
+        # 'content-type': 'text/palin',
+        'content-type': 'application/json',  # Web返回的本质，都是字符串！
+        'location': 'http://blog.cuixiaozhao.com'
+    }
+    # response = make_response('<html></html>', 301)# 状态码只是一个标识，并不会影响返回的内容；
+    # response.headers = headers
+    # return response
+    # return '<html></html>'
+    # 推荐使用的返回HTTP响应的方式:
+    return '<html></html>', 301, headers
     return "Hello World！Base WebFramework Flask"
 
 
@@ -39,5 +53,5 @@ if __name__ == '__main__':  # 约定俗成的用法，入口文件中，如果�
 2、加上一句判断，一个Python源码文件（.py）除了可以被直接运行外，还可以作为模块（也就是库），
 被其他.py文件导入。不管是直接运行还是被导入，
 .py文件的最顶层代码都会被运行（Python用缩进来区分代码层次），
-而当一个.py文件作为模块被导入时，我们可能不希望一部分代码被运行。
+而当一个.py文件作为模块被导入时，我们可能不希望一部分代码被运行。 
 """

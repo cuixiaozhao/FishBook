@@ -16,8 +16,10 @@
 import requests
 
 
-class HTTP:
-    def get(self, url, return_json=True):
+class HTTP(object):
+    # 经典类和新式类，Python2有区分，Python3统一为新式类；
+    @staticmethod
+    def get(url, return_json=True):
         r = requests.get(url)
         # restful API；
         # json格式的数据；

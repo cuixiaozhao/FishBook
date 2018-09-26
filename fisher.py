@@ -8,8 +8,7 @@
 # Email   : tqtl@tqtl.org
 
 from flask import Flask, make_response
-
-# from config import DEBUG
+from helper import is_isbn_or_key
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -24,6 +23,8 @@ def search(q, page):
     """
     # ISBN13 :ISBN13,13个0~9的数字组成；
     # ISBN10 :10个0~9的数字组成,含有一些-；
+    isbn_or_key = is_isbn_or_key(q)
+    pass
 
 
 if __name__ == '__main__':

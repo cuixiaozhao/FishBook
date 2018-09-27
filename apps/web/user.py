@@ -6,7 +6,7 @@
 # File    : user.py
 # Author  : 天晴天朗
 # Email   : tqtl@tqtl.org
-from . import web
+from apps.web import web
 
 
 #@web.route('url')

@@ -22,17 +22,16 @@ def search():
         ?q = 金庸&
     :return:
     """
-    q = request.args['q']
-    page = request.args['page']
     form = SearchForm(request.args)
     if form.validate():
-        q = form.q.data.strip()
-        page = form.page.data.strip()
+        q = form.q.data.strip()  # q=9787501524044
+        page = form.page.data
         isbn_or_key = is_isbn_or_key(q)
         if isbn_or_key == 'isbn':
             result = YushuBook.search_by_isbn(q)
         else:
-            result = YushuBook.search_by_keyword(q)
+             result = YushuBook.search_by_keyword(q, page)
         return jsonify(result)
     else:
-        return jsonify({'msg':'参数校验失败！'})
+        # return jsonify({'msg':'参数校验失败！'})
+        return jsonify(form.errors)

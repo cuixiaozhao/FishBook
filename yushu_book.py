@@ -6,7 +6,7 @@
 # File    : yushu_book.py
 # Author  : 天晴天朗
 # Email   : tqtl@tqtl.org
-from http import HTTP
+from httper import HTTP
 
 
 class YushuBook:

@@ -3,7 +3,7 @@
 # Project: FishBook 
 # Software: PyCharm
 # Time    : 2018-09-26 23:48
-# File    : http.py
+# File    : httper.py
 # Author  : 天晴天朗
 # Email   : tqtl@tqtl.org
 ""
@@ -16,7 +16,7 @@
 import requests
 
 
-class HTTP(object):
+class HTTP:
     # 经典类和新式类，Python2有区分，Python3统一为新式类；
     @staticmethod
     def get(url, return_json=True):

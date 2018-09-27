@@ -8,8 +8,8 @@
 # Email   : tqtl@tqtl.org
 from flask import jsonify, request
 
-from helper import is_isbn_or_key
-from yushu_book import YushuBook
+from apps.libs.helper import is_isbn_or_key
+from apps.spider.yushu_book import YushuBook
 from apps.web import web
 from apps.forms.book import SearchForm
 
@@ -30,7 +30,7 @@ def search():
         if isbn_or_key == 'isbn':
             result = YushuBook.search_by_isbn(q)
         else:
-             result = YushuBook.search_by_keyword(q, page)
+            result = YushuBook.search_by_keyword(q, page)
         return jsonify(result)
     else:
         # return jsonify({'msg':'参数校验失败！'})

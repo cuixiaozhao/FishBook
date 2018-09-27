@@ -6,11 +6,12 @@
 # File    : yushu_book.py
 # Author  : 天晴天朗
 # Email   : tqtl@tqtl.org
-from httper import HTTP
+from apps.libs.httper import HTTP
 from flask import current_app
 
 
 class YushuBook:
+    # 模型层；MVC,M层
     isbn_url = 'http://t.yushu.im/v2/book/isbn/{}'
     # keyword_url = 'http:/t.yushu.im/v2/book/search?q={}&count={}&start={}'
     keyword_url = 'http://t.yushu.im/v2/book/search?q={}&page={}'

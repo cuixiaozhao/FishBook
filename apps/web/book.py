@@ -13,6 +13,7 @@ from apps.spider.yushu_book import YushuBook
 from apps.web import web
 from apps.forms.book import SearchForm
 from apps.view_models.book import BookViewModel
+from apps.view_models.book import BookCollection
 
 
 @web.route('/book/search')
@@ -24,17 +25,17 @@ def search():
     :return:
     """
     form = SearchForm(request.args)
+    books = BookCollection()
     if form.validate():
         q = form.q.data.strip()  # q=9787501524044
         page = form.page.data
         isbn_or_key = is_isbn_or_key(q)
+        yushu_book = YushuBook()
         if isbn_or_key == 'isbn':
-            result = YushuBook.search_by_isbn(q)
-            result = BookViewModel.package_single(result, q)
+            yushu_book.search_by_isbn(q)
         else:
-            result = YushuBook.search_by_keyword(q, page)
-            result = BookViewModel.package_collection(result, q)
-        return jsonify(result)
+            yushu_book.search_by_isbn(q, page)
+        books.fill(yushu_book, q)
+        return jsonify(books)
     else:
-        # return jsonify({'msg':'参数校验失败！'})
         return jsonify(form.errors)

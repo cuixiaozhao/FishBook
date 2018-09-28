@@ -8,6 +8,7 @@
 # Email   : tqtl@tqtl.org
 
 from flask import Flask
+from apps.models.book import db
 
 
 def create_app():
@@ -15,6 +16,8 @@ def create_app():
     app.config.from_object('apps.secure')
     app.config.from_object('apps.settings')
     register_blueprint(app)
+    db.init_app(app)
+    db.create_all(app=app)
     return app
 
 
